@@ -1,0 +1,22 @@
+{% extends "task1/menu.html" %}
+
+{% block title %}
+    <title>{{ text_title }}</title>
+{% endblock %}
+
+{% block pagename %}
+     <h1>{{ text_pagename }}</h1>
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+   <h2>Извените, ваша корзина пуста</h2>
+
+    <button>
+        <a href = "{{text_href}}" link="black" style="text-decoration: none;" >{{ text_button_1 }}</a>
+    </button>
+{% endblock %}

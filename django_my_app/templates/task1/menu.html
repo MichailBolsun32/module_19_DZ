@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+    {% block title %}
+        <title>{{ text_title }}</title>
+    {% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block pagename %}
+        <h1>{{ text_pagename }}</h1>
+         {% endblock %}
+    </header>
+
+   <nav>
+       {% block menu %}
+           {% for key, value in menu %}
+               <h3>
+                    <a href="{{ key }}">{{ value }}</a>
+               </h3>
+           {% endfor %}
+       {% endblock %}
+   </nav>
+
+   <main>
+       {% block content %}
+       {% endblock %}
+   </main>
+</body>
+</html>

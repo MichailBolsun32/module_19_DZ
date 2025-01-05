@@ -1,0 +1,27 @@
+{% extends "task1/menu.html" %}
+
+{% block title %}
+    <title>{{ text_title }}</title>
+{% endblock %}
+
+{% block pagename %}
+     <h1>{{ text_pagename }}</h1>
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+     <ul>
+         {% for game in games %}
+             <li>{{ game.title }} | {{ game.description }}. Стоимость: {{ game.cost }}
+                 <button> {{ text_button_1 }} </button>
+             </li>
+         {% endfor %}
+     </ul>
+
+     <button>
+         <a href = "{{text_href}}" link="black" style="text-decoration: none;" >{{ text_button_2 }}</a>
+     </button>
+{% endblock %}
