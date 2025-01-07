@@ -1,6 +1,7 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from task1.forms import ContactForm
-from task1.models import Buyer, Game
+from task1.models import Buyer, Game, News
 # Create your views here.
 
 # вспомогательная ф-ция для создания списка меню
@@ -10,6 +11,7 @@ def get_menu():
         ['/platform/', 'Главная'],
         ['/platform/games/', 'Магазин'],
         ['/platform/cart/', 'Корзина'],
+        ['/platform/news/', 'News'],#добавили новый пункт меню для NEWS
     ]
 
 # Create your views here.
@@ -112,3 +114,21 @@ def sign_up_by_django(request): # предситавление формы чер
         info = {'form': form}
 
     return render(request, 'task1/registration_page_py.html', info)
+
+#Пагинатор (построничная навигация):
+def news_paginator(request):
+    text_button_1 = 'Вернуться обратно'
+    text_href = '/platform/'
+
+    news_ = News.objects.all().order_by('data')  # получаем всеx новостей
+    paginator = Paginator(news_, 2)   # создаем пагинатор 3 новости на странице
+    page_number = request.GET.get('page')  # получаем номер страницы, на которую переходит пользователь
+    news = paginator.get_page(page_number)   # получаем новости для текущей страницы
+
+    context = {
+        'text_button_1': text_button_1,
+        'text_href': text_href,
+        'news': news,
+    }
+    # передаем контекст в шаблон
+    return render(request, 'task1/news.html', context)
